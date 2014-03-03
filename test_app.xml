@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Test app">
+  </ModulePrefs>
+  <Content type="html"><![CDATA[
+
+<html>
+<body>
+
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+
+<h1>TestApp</h1>
+
+<p>
+Some content.
+</p>
+
+<script>
+start = function() {
+  gapi.hangout.onApiReady.add(
+      function(eventObj) {
+        console.log('Here I am!');
+      });
+};
+
+gadgets.util.registerOnLoadHandler(start);
+</script>
+</body>
+]]>
+  </Content>
+</Module>
+  
