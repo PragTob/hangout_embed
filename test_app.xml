@@ -21,7 +21,7 @@ Some content.
 
 <script>
 var hangoutUrl = gapi.hangout.getHangoutUrl();
-var callbackUrl = 'http://floating-fjord-9792.herokuapp.com/hangout_registration';
+var callbackUrl = 'https://floating-fjord-9792.herokuapp.com/hangout_registration';
 var startData = gapi.hangout.getStartData();
 var successFunc = function(data) {
   $('#result').append(data);
