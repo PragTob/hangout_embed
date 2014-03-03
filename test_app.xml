@@ -10,19 +10,43 @@
 <body>
 
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
 <h1>TestApp</h1>
 
 <p>
 Some content.
 </p>
+<div id='result'><div/>
 
 <script>
-start = function() {
+var hangoutUrl = gapi.hangout.getHangoutUrl();
+var callbackUrl = 'http://floating-fjord-9792.herokuapp.com/hangout_registration';
+var startData = gapi.hangout.getStartData();
+var successFunc = function(data) {
+  $('#result').append(data);
+};
+var registerHangout = function() {
+  $.ajax({
+    type: "POST",
+    url: callbackUrl,
+    data: {
+            "hangoutUrl": hangoutUrl,
+            "startData": startData
+           },
+    success: successFunc,
+    dataType: 'json'
+  });
+
+}
+
+var start = function() {
   gapi.hangout.onApiReady.add(
-      function(eventObj) {
-        console.log('Here I am!');
-      });
+    function(eventObj) {
+      console.log('Here I am!');
+      registerHangout();
+     }
+  );
 };
 
 gadgets.util.registerOnLoadHandler(start);
