@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+
+<h1>TestApp</h1>
+
+<p>
+  Some content.
+</p>
+<div id='result'></div>
+
+  <script>
+    var successFunc = function(data) {
+      $('#result').append(data);
+    };
+
+    var registerHangout = function() {
+      var hangoutUrl = 'hangoutUrl';
+      var callbackUrl = 'http://localhost:4567/hangout_registration';
+      var startData = 'start';
+      $.ajax({
+        type: "POST",
+        url: callbackUrl,
+        success: successFunc,
+        dataType: 'json',
+        data: JSON.stringify({
+          "hangoutUrl": hangoutUrl,
+          "startData": startData
+        })
+
+      });
+    }
+
+    $(function() {registerHangout();});
+  </script>
+</body>
+</html>

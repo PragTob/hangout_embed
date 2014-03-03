@@ -17,7 +17,7 @@
 <p>
 Some content.
 </p>
-<div id='result'><div/>
+<div id='result'></div>
 
 <script>
 
@@ -57,6 +57,7 @@ var start = function() {
 gadgets.util.registerOnLoadHandler(start);
 </script>
 </body>
+</html>
 ]]>
   </Content>
 </Module>

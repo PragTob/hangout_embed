@@ -9,6 +9,10 @@ get '/start_hangout' do
   send_file 'start_hangout.html'
 end
 
+get '/test' do
+  send_file 'test.html'
+end
+
 post '/hangout_registration' do
   request.body.rewind  # in case someone already read it
   data = JSON.parse request.body.read
