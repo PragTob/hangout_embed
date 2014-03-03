@@ -20,24 +20,29 @@ Some content.
 <div id='result'><div/>
 
 <script>
-var hangoutUrl = gapi.hangout.getHangoutUrl();
-var callbackUrl = 'https://floating-fjord-9792.herokuapp.com/hangout_registration';
-var startData = gapi.hangout.getStartData();
+
+
 var successFunc = function(data) {
   $('#result').append(data);
 };
+
 var registerHangout = function() {
+  var hangoutUrl = gapi.hangout.getHangoutUrl();
+  console.log(hangoutUrl)
+  var callbackUrl = 'https://floating-fjord-9792.herokuapp.com/hangout_registration';
+  var startData = gapi.hangout.getStartData();
+  console.log(startData);
   $.ajax({
     type: "POST",
     url: callbackUrl,
+    success: successFunc,
+    dataType: 'json',
     data: {
             "hangoutUrl": hangoutUrl,
             "startData": startData
-           },
-    success: successFunc,
-    dataType: 'json'
-  });
+           }
 
+  });
 }
 
 var start = function() {
