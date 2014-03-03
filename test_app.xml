@@ -37,10 +37,10 @@ var registerHangout = function() {
     url: callbackUrl,
     success: successFunc,
     dataType: 'json',
-    data: {
+    data: JSON.stringify({
             "hangoutUrl": hangoutUrl,
             "startData": startData
-           }
+           })
 
   });
 }
