@@ -1,20 +1,35 @@
 require 'sinatra'
 require 'json'
 
-get '/' do
-  "Sanity - I am up"
-end
+class CallbackRegistration < Sinatra::Application
 
-get '/start_hangout' do
-  send_file 'start_hangout.html'
-end
+  # forcing SSl
+  # http://bytesofpi.com/post/28952453059/forcing-ssl-in-a-sinatra-app
+  configure :development, :test do
+    set :host, 'localhost:4567'
+    set :force_ssl, false
+  end
 
-get '/test' do
-  send_file 'test.html'
-end
+  configure :production do
+    set :host, 'floating-fjord-9792.herokuapp.com'
+    set :force_ssl, true
+  end
 
-post '/hangout_registration' do
-  request.body.rewind  # in case someone already read it
-  data = JSON.parse request.body.read
-  "So your url is #{data['hangoutUrl']} and your startData #{data['startData']}... interesting."
+  get '/' do
+    "Sanity - I am up"
+  end
+
+  get '/start_hangout' do
+    send_file 'start_hangout.html'
+  end
+
+  get '/test' do
+    send_file 'test.html'
+  end
+
+  post '/hangout_registration' do
+    request.body.rewind  # in case someone already read it
+    data = JSON.parse request.body.read
+    "So your url is #{data['hangoutUrl']} and your startData #{data['startData']}... interesting."
+  end
 end
